@@ -1,0 +1,9 @@
+---
+- name: Add the debianized repo file
+  copy: src=debianized.repo dest=/etc/yum.repos.d/debianized.repo
+
+- name: Install hhvm
+  yum: "name={{ item }} state=present"
+  with_items:
+    - epel-release
+    - "hhvm-{{ hhvm_version }}"
